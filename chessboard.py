@@ -14,6 +14,9 @@ class Chessboard:
         self.piece_images = self.load_images()
         self.setup_pieces()
 
+        self.selected_piece = None
+        self.selected_square = None
+
     def load_images(self):
         # Dictionary to hold images, keyed by piece type and color
         images = {}
@@ -66,3 +69,36 @@ class Chessboard:
                     # Use the image from the dictionary based on piece type and color
                     piece_image = self.piece_images[f'{piece.color}_{piece.type}']
                     self.screen.blit(piece_image, (col * self.square_size, row * self.square_size))
+    
+    # Function to ascertain piece coordinates and move if fits logic
+    # Each square of the 8X8 is either None or a Piece object
+    def move_piece(self, start_pos, end_pos):
+        start_row, start_col = start_pos # separate the position into a tuple, one for column and one for row
+        end_row, end_col = end_pos
+        piece = self.board[start_row][start_col] # Access the Piece object at that location if there is one, otherwise the position in the list should contain None.
+
+        # Simple example: allow movement if destination square is empty
+        if self.board[end_row][end_col] is None:
+            self.board[end_row][end_col] = piece
+            self.board[start_row][start_col] = None
+            return True
+        return False
+    
+    def handle_click(self, row, col):
+        if self.selected_piece:
+            # Try to move the selected piece to the clicked square
+            if self.move_piece(self.selected_square, (row, col)):
+                self.selected_piece = None
+                self.selected_square = None
+            else:
+                # If move is invalid, deselect
+                self.selected_piece = None
+                self.selected_square = None
+        else:
+            # Select a piece if one exists at the clicked square
+            piece = self.board[row][col]
+            if piece:
+                self.selected_piece = piece
+                self.selected_square = (row, col)
+
+

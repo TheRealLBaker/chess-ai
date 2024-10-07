@@ -15,6 +15,11 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+        elif event.type == pygame.MOUSEBUTTONDOWN:
+            # Handle the piece selection and movement
+            x, y = pygame.mouse.get_pos()
+            row, col = y // chessboard.square_size, x // chessboard.square_size
+            chessboard.handle_click(row, col)  # Handle the click in the chessboard class
 
     # Draw everything
     chessboard.draw_board()
