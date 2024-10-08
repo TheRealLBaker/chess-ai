@@ -3,7 +3,7 @@ import pygame
 from chessboard import Chessboard
 # Initialize Pygame
 pygame.init()
-screen = pygame.display.set_mode((600, 600))
+screen = pygame.display.set_mode((700, 700))
 pygame.display.set_caption("Chess Game")
 clock = pygame.time.Clock()
 
