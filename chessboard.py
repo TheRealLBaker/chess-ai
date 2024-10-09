@@ -2,6 +2,7 @@
 import pygame
 from chesspiece import Piece
 from pawn import Pawn
+from bishop import Bishop
 
 class Chessboard:
     def __init__(self, screen):
@@ -45,8 +46,8 @@ class Chessboard:
         self.board[0][7] = Piece('rook', 'B')
         self.board[0][1] = Piece('knight', 'B')
         self.board[0][6] = Piece('knight', 'B')
-        self.board[0][2] = Piece('bishop', 'B')
-        self.board[0][5] = Piece('bishop', 'B')
+        self.board[0][2] = Bishop('bishop', 'B')
+        self.board[0][5] = Bishop('bishop', 'B')
         self.board[0][3] = Piece('queen', 'B')
         self.board[0][4] = Piece('king', 'B')
 
@@ -55,8 +56,8 @@ class Chessboard:
         self.board[7][7] = Piece('rook', 'W')
         self.board[7][1] = Piece('knight', 'W')
         self.board[7][6] = Piece('knight', 'W')
-        self.board[7][2] = Piece('bishop', 'W')
-        self.board[7][5] = Piece('bishop', 'W')
+        self.board[7][2] = Bishop('bishop', 'W')
+        self.board[7][5] = Bishop('bishop', 'W')
         self.board[7][3] = Piece('queen', 'W')
         self.board[7][4] = Piece('king', 'W')
         # Add other pieces as needed
