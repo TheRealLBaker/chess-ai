@@ -3,6 +3,7 @@ import pygame
 from chesspiece import Piece
 from pawn import Pawn
 from bishop import Bishop
+from rook import Rook
 
 class Chessboard:
     def __init__(self, screen):
@@ -42,8 +43,8 @@ class Chessboard:
             self.board[6][col] = Pawn('W')
         
         # Black pieces
-        self.board[0][0] = Piece('rook', 'B')
-        self.board[0][7] = Piece('rook', 'B')
+        self.board[0][0] = Rook('rook', 'B')
+        self.board[0][7] = Rook('rook', 'B')
         self.board[0][1] = Piece('knight', 'B')
         self.board[0][6] = Piece('knight', 'B')
         self.board[0][2] = Bishop('bishop', 'B')
@@ -52,8 +53,8 @@ class Chessboard:
         self.board[0][4] = Piece('king', 'B')
 
         # White pieces
-        self.board[7][0] = Piece('rook', 'W')
-        self.board[7][7] = Piece('rook', 'W')
+        self.board[7][0] = Rook('rook', 'W')
+        self.board[7][7] = Rook('rook', 'W')
         self.board[7][1] = Piece('knight', 'W')
         self.board[7][6] = Piece('knight', 'W')
         self.board[7][2] = Bishop('bishop', 'W')
