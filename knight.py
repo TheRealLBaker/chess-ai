@@ -13,4 +13,9 @@ class Knight(Piece):
         col_diff = abs(end_col - start_col)
         if not ((row_diff == 1 and col_diff == 2) or (row_diff == 2 and col_diff == 1)):
             return False
+        # Check if the destination square is not empty and has the same color as the current piece
+        target_square = board[end_row][end_col]
+        if target_square is not None and target_square.colour == self.colour:
+            return False
+
         return True

@@ -5,6 +5,7 @@ from pawn import Pawn
 from bishop import Bishop
 from rook import Rook
 from knight import Knight
+from queen import Queen
 
 class Chessboard:
     def __init__(self, screen):
@@ -50,7 +51,7 @@ class Chessboard:
         self.board[0][6] = Knight('knight', 'B')
         self.board[0][2] = Bishop('bishop', 'B')
         self.board[0][5] = Bishop('bishop', 'B')
-        self.board[0][3] = Piece('queen', 'B')
+        self.board[0][3] = Queen('queen', 'B')
         self.board[0][4] = Piece('king', 'B')
 
         # White pieces
@@ -60,7 +61,7 @@ class Chessboard:
         self.board[7][6] = Knight('knight', 'W')
         self.board[7][2] = Bishop('bishop', 'W')
         self.board[7][5] = Bishop('bishop', 'W')
-        self.board[7][3] = Piece('queen', 'W')
+        self.board[7][3] = Queen('queen', 'W')
         self.board[7][4] = Piece('king', 'W')
         # Add other pieces as needed
 
@@ -103,7 +104,7 @@ class Chessboard:
             for col in range(8):
                 piece = self.board[row][col]
                 if piece:  # If there is a piece
-                    piece_image = piece.image  # Assuming each piece has an image attribute
+                    piece_image = piece.image  # Access the image attribute of the piece
                     self.screen.blit(piece_image, 
                                     (col * self.square_size + (self.square_size - piece_image.get_width()) // 2 + self.border_thickness,
                                     row * self.square_size + (self.square_size - piece_image.get_height()) // 2 + self.border_thickness))
