@@ -6,6 +6,7 @@ from bishop import Bishop
 from rook import Rook
 from knight import Knight
 from queen import Queen
+from turn_manager import TurnManager
 
 class Chessboard:
     def __init__(self, screen):
@@ -27,6 +28,7 @@ class Chessboard:
         # Set up the border color and thickness
         self.border_color = (0, 0, 0)  # Black border
         self.border_thickness = 50
+        self.turn_manager = TurnManager()
     def load_images(self):
         # Dictionary to hold images, keyed by piece type and colour
         images = {}
@@ -115,10 +117,15 @@ class Chessboard:
         start_row, start_col = start_pos
         end_row, end_col = end_pos
         piece = self.board[start_row][start_col]
+        # Check if it's the correct turn for the piece's color
+        if not piece or not self.turn_manager.is_turn(piece.colour):
+            print("Not your turn!")
+            return False
 
         if piece and piece.is_move_valid(start_pos, end_pos, self.board):
             self.board[end_row][end_col] = piece # works for capturing too, sets the piece identity of the end position to the capturer
             self.board[start_row][start_col] = None # sets initial position of where the piece was to None
+            self.turn_manager.switch_turn()  # Switch turn after a valid move
             return True
 
         return False
